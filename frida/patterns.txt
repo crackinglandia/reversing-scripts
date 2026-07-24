@@ -1,0 +1,48 @@
+[pattern]
+# WinHttpOpen -> RCX
+bytes = FF D0 48 89 47 1D 48 8B F0 48 85 C0 0F 84 ?? ?? ?? ?? 44 39 A7 9D 00 00 00 0F 85 ?? ?? ?? ?? 48 85 DB 74 ?? 48 C7 C0 ?? ?? ?? ?? 0F 1F 80 00 00 00 00 48 FF C0 66 44 39 24 43 75
+name  = WinHttpOpen
+regs  = rcx
+buf   = rcx:100
+dis   = 10
+
+[pattern]
+# WinHttpConnect -> RDX
+bytes = FF D0 48 89 47 25 48 8B F0 48 85 C0 0F 84 ?? ?? ?? ?? B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? 89 5C 24 30 4C 8D 85 60 05 00 00 4C 89 64 24 28 48 8D 15 ?? ?? ?? ?? 45 33 C9 4C 89 64 24 20 48 8B CE FF D0
+name  = WinHttpConnect
+regs  = rdx
+buf   = rdx:100
+dis   = 10
+
+[pattern]
+# WinHttpOpenRequest -> RDX
+
+bytes = FF D0 48 89 47 15 48 8B F0 48 85 C0 74 ?? 41 3B DD 75 ?? B9 ?? ?? ?? ?? C7 44 24 60 00 31 00 00 E8
+name  = WinHttpOpenRequest
+regs  = rdx
+buf   = rdx:100
+dis   = 10
+
+[pattern]
+# WinHttpWriteData -> RDX
+bytes = FF D0 85 C0 74 ?? 03 5C 24 44 41 3B DE 72 ?? B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8B 4D 15 33 D2 FF D0
+name  = WinHttpWriteData
+regs  = rdx
+buf   = rdx:100
+dis   = 10
+
+[pattern]
+# WinHttpReadData 1 -> RDX
+bytes = FF D0 85 C0 74 ?? 0F 1F 80 00 00 00 00 8B 44 24 40 85 C0 74 ?? B9 ?? ?? ?? ?? 41 89 07 E8 ?? ?? ?? ?? 48 8B 4D 15 4C 8D 4C 24 40 41 B8 00 18 01 00 48 8B D3 FF D0
+name  = WinHttpReadData_1
+regs  = rdx
+buf   = rdx:100
+dis   = 10
+
+[pattern]
+# WinHttpReadData 2 -> RDX
+bytes = FF D0 85 C0 75 ?? B8 01 00 00 00 E9
+name  = WinHttpReadData_2
+regs  = rdx
+buf   = rdx:100
+dis   = 10
